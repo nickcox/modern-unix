@@ -1,0 +1,111 @@
+ifdef::env-github[]
+:tip-caption: :bulb:
+
+= modern-unix
+
+This module collects Windows versions of most of the https://github.com/ibraheemdev/modern-unix[modern-unix] tools.
+It includes completions and a few additional helpers and aliases.
+
+== Install
+
+```ps1
+Install-Module modern-unix-win
+```
+
+== Usage
+
+Import the module.
+
+```ps1
+Import-Module modern-unix-win
+```
+
+This will add all of the tools to your `path`. You can list them with with the `mutools` alias.
+
+
+```ps1con
+PS1> mutools
+
+bat
+broot
+btm
+cheat
+delta
+dog
+duf
+dust
+fd
+gping
+hyperfine
+lsd
+procs
+rg
+sd
+xh
+zoxide
+
+PS1> bat --version
+
+bat 0.18.2
+```
+
+Enable completions for a specific tool with `mucomplete [-ToolName] <ToolName>`.
+
+```ps1con
+PS1> mucomplete bat
+
+PS1> bat -<tab>
+_language_     listthemes     number         italictext     tabs
+listlanguages  style          linerange      decorations    help
+mapsyntax      plain          highlightline  paging         version
+theme          showall        color          wrap
+
+Set the language for syntax highlighting.
+```
+
+Or enable completion for all of them by ommiting the argument.
+
+```ps1con
+PS1> mucomplete
+
+PS1> btm --b<tab>
+_basic_  battery
+
+Hides graphs and uses a more basic look.
+```
+
+Get the manfile for a given tool with `muman`.
+
+TIP: A good way to view manfiles on Windows is via https://pandoc.org/[pandoc].
+
+```ps1con
+PS1> muman xh | pandoc -f man -t markdown | bat -l md
+
+───────┬────────────────────────────────────────────────────────────────────────
+ STDIN |
+───────┼────────────────────────────────────────────────────────────────────────
+   1   │ NAME
+   2   │ ====
+   3   │
+   4   │ xh - Friendly and fast tool for sending HTTP requests
+   5   │
+   6   │ SYNOPSIS
+   7   │ ========
+   8   │
+   9   │ **xh** \[*OPTIONS*\] *\<*\[*METHOD*\] *URL\> *\[*\--*\]
+  10   │ \[*REQUEST\_ITEM*\]\...
+  11   │
+  12   │ DESCRIPTION
+  13   │ ===========
+  14   │
+  15   │ xh is a friendly and fast tool for sending HTTP requests.
+  16   │
+  17   │ It reimplements as much as possible of HTTPie\'s excellent design.
+  18   │
+  19   │ OPTIONS
+  20   │ =======
+  21   │
+  22   │ Positional Arguments
+  23   │ --------------------
+  ...
+```

@@ -1,0 +1,5 @@
+scripts/staging/
+scripts/outputs/
+modern-unix-win/bin/
+modern-unix-win/support/
+.vscode/
